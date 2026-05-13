@@ -686,142 +686,146 @@ footer {
   transform: translateY(0);
 }
 
-/* ── Hamburger ──────────────────────────────────────────────────────── */
+/* ── Hamburger button ───────────────────────────────────────────────── */
 .nav-hamburger {
   display: none;
   flex-direction: column;
-  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
-  z-index: 200;
+  padding: 6px;
+  z-index: 201;
+  flex-shrink: 0;
 }
 .nav-hamburger span {
   display: block;
-  width: 24px; height: 2px;
+  width: 22px; height: 2px;
   background: var(--blue2);
   border-radius: 2px;
-  transition: all var(--transition);
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── Responsive ────────────────────────────────────────────────────── */
-
-/* Tablet */
+/* ── Responsive — Tablet (<=900px) ──────────────────────────────────── */
 @media (max-width: 900px) {
   nav { padding: 16px 28px; }
-
   #hero { padding: 100px 28px 60px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-right { order: -1; }
-  .stats-card { padding: 24px; }
-  .stats-grid { gap: 16px; }
-
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   section { padding: 70px 28px; }
-  #skills          { padding: 70px 28px; }
-  #publications    { padding: 70px 28px; }
-  #contact         { padding: 70px 28px; }
-  #experience      { padding: 70px 28px !important; }
-
-  /* Experience/Education side-by-side → stack */
-  #experience > div { grid-template-columns: 1fr !important; gap: 40px !important; }
-
+  #skills      { padding: 70px 28px; }
+  #publications { padding: 70px 28px; }
+  #contact     { padding: 70px 28px; }
+  #experience  { padding: 70px 28px !important; }
+  #experience > div { grid-template-columns: 1fr !important; gap: 48px !important; }
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .awards-grid   { grid-template-columns: 1fr 1fr; }
 }
 
-/* Mobile */
+/* ── Responsive — Mobile (<=640px) ──────────────────────────────────── */
 @media (max-width: 640px) {
-  /* Nav — hamburger */
-  nav { padding: 14px 20px; }
 
+  /* Nav */
+  nav { padding: 14px 18px; }
+  .nav-logo { font-size: 1rem; }
   .nav-hamburger { display: flex; }
 
   .nav-links {
     position: fixed;
-    top: 0; right: 0;
-    width: min(280px, 80vw);
+    top: 0; right: 0; bottom: 0;
+    width: 75vw;
+    max-width: 280px;
     height: 100vh;
-    background: rgba(11,15,26,0.97);
-    backdrop-filter: blur(20px);
+    background: rgba(11,15,26,0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-left: 1px solid var(--border);
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 0;
-    padding: 80px 36px 40px;
+    padding: 0 32px;
     transform: translateX(100%);
-    transition: transform var(--transition);
-    z-index: 150;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index: 200;
   }
   .nav-links.open { transform: translateX(0); }
   .nav-links li { width: 100%; }
   .nav-links a {
     display: block;
-    padding: 14px 0;
-    font-size: 16px;
+    padding: 16px 0;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
     border-bottom: 1px solid var(--border);
   }
+  .nav-links li:last-child a { border-bottom: none; }
 
   /* Hero */
-  #hero { padding: 90px 20px 56px; min-height: auto; }
-  .hero-grid { gap: 32px; }
-  h1 { font-size: clamp(2.4rem, 10vw, 3rem); }
-  .hero-subtitle { font-size: 0.95rem; }
-  .hero-bio { font-size: 14px; }
-  .hero-actions { flex-direction: column; }
-  .btn { width: 100%; justify-content: center; }
-  .stats-card { padding: 20px; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .stat-num { font-size: 1.9rem; }
+  #hero { padding: 88px 18px 52px; min-height: unset; align-items: flex-start; }
+  .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero-subtitle { font-size: 0.9rem; margin-bottom: 18px; }
+  .hero-bio { font-size: 14px; margin-bottom: 28px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn { width: 100%; justify-content: center; padding: 13px 20px; }
+  .stats-card { padding: 20px 16px; border-radius: 14px; }
+  .stats-grid { gap: 12px; margin-bottom: 18px; }
+  .stat-num   { font-size: 1.8rem; }
+  .stat-label { font-size: 11px; }
+  .chip { font-size: 10.5px; padding: 3px 10px; }
 
   /* Sections */
-  section              { padding: 56px 20px; }
-  #skills              { padding: 56px 20px; }
-  #publications        { padding: 56px 20px; }
-  #contact             { padding: 60px 20px; }
-  #experience          { padding: 56px 20px !important; }
-
-  .section-title { margin-bottom: 32px; }
+  section       { padding: 52px 18px; }
+  #skills       { padding: 52px 18px; }
+  #publications { padding: 52px 18px; }
+  #contact      { padding: 56px 18px; }
+  #experience   { padding: 52px 18px !important; }
+  #experience > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 28px; }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .skill-card  { padding: 14px 12px; gap: 8px; }
+  .skill-card  { padding: 14px 12px; gap: 8px; border-radius: 10px; }
   .skill-icon  { width: 28px; height: 28px; font-size: 14px; }
-  .skill-name  { font-size: 12px; }
+  .skill-name  { font-size: 11.5px; }
 
   /* Projects */
-  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
-  .proj-card { padding: 22px 18px; }
+  .projects-grid { grid-template-columns: 1fr; gap: 14px; }
+  .proj-card { padding: 20px 16px; }
+  .proj-title { font-size: 1rem; }
+  .proj-desc  { font-size: 13px; }
 
-  /* Experience */
-  #experience > div { grid-template-columns: 1fr !important; gap: 48px !important; }
-  .tl-header { flex-direction: column; gap: 6px; }
-  .tl-date   { align-self: flex-start; }
+  /* Timeline */
+  .timeline { padding-left: 20px; }
+  .tl-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .tl-title  { font-size: 14px; }
-  .tl-org    { font-size: 13px; }
-  .tl-bullets li { font-size: 13px; }
+  .tl-org    { font-size: 12.5px; }
+  .tl-date   { font-size: 10px; padding: 2px 10px; }
+  .tl-bullets li { font-size: 12.5px; }
 
   /* Awards */
   .awards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .award-card  { padding: 16px 12px; }
-  .award-icon  { font-size: 22px; }
-  .award-text  { font-size: 12px; }
+  .award-card  { padding: 16px 10px; }
+  .award-icon  { font-size: 22px; margin-bottom: 8px; }
+  .award-text  { font-size: 11.5px; }
 
   /* Publications */
-  .pub-card { padding: 18px 16px; flex-direction: column; gap: 12px; }
-  .pub-badge { align-self: flex-start; }
+  .pub-card { padding: 16px; grid-template-columns: 1fr; gap: 10px; }
+  .pub-badge { width: fit-content; padding: 5px 12px; }
+  .pub-title { font-size: 0.9rem; }
+  .pub-venue { font-size: 12px; }
+  .pub-authors { font-size: 11.5px; }
 
   /* Contact */
-  .contact-links { flex-direction: column; align-items: stretch; }
-  .contact-link  { justify-content: center; }
+  .contact-links { flex-direction: column; align-items: stretch; gap: 10px; }
+  .contact-link  { justify-content: center; font-size: 13.5px; padding: 13px 16px; }
 
   /* Footer */
-  footer { font-size: 11px; padding: 20px 16px; }
+  footer { font-size: 11px; padding: 18px 16px; line-height: 1.6; }
 }
 </style>
 </head>
@@ -830,10 +834,10 @@ footer {
 <!-- ── Nav ──────────────────────────────────────────────────────────────── -->
 <nav>
   <div class="nav-logo">Fiza Haider Ali</div>
-  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+  <button class="nav-hamburger" id="navBtn" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <ul class="nav-links" id="navLinks">
+  <ul class="nav-links" id="navMenu">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -1215,20 +1219,20 @@ footer {
 
 <script>
 // Hamburger menu
-const hamburger = document.getElementById('hamburger');
-const navLinks  = document.getElementById('navLinks');
+const navBtn  = document.getElementById('navBtn');
+const navMenu = document.getElementById('navMenu');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navLinks.classList.toggle('open');
-});
+function openMenu()  { navBtn.classList.add('open'); navMenu.classList.add('open'); navBtn.setAttribute('aria-expanded','true'); }
+function closeMenu() { navBtn.classList.remove('open'); navMenu.classList.remove('open'); navBtn.setAttribute('aria-expanded','false'); }
 
-// Close menu when a link is clicked
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    navLinks.classList.remove('open');
-  });
+navBtn.addEventListener('click', () => navMenu.classList.contains('open') ? closeMenu() : openMenu());
+
+// Close when a link is tapped
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+// Close on outside tap
+document.addEventListener('click', e => {
+  if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navBtn.contains(e.target)) closeMenu();
 });
 
 // Scroll reveal
